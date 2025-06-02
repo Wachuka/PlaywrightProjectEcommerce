@@ -84,8 +84,11 @@ async navigateToSignUpForm(){
     await expect (this.addressInfoLabel).toContainText("Address Information");
 }
 
-//Sign up form after navigating to the sign up page
-//check the gender has been selected
+/*
+ENTER ACCOUNT INFORMATION
+*/
+
+//select Title
 async selectTitle(title: "Mr" | "Mrs"){
    if (title === "Mr"){
        await this.mrRadioBtn.check();
@@ -95,12 +98,69 @@ async selectTitle(title: "Mr" | "Mrs"){
     }
 }
 
+//validate name has been captured from sign up form
+async isNameCaptured(){
+    await expect (this.name).not.toBeEmpty();
+}
+
+//validate name has been captured from sign up form
+async isEmailCaptured(){
+    await expect (this.email).not.toBeEmpty();
+}
+
+//input password
+async enterPassword(password:string){
+    await this.password.fill(password);
+}
+
+//select DOB
 async selectDateOfBirth(date:string,month:string,year:string){
     await this.date.selectOption(date);
     await this.month.selectOption(month);
     await this.date.selectOption(year);
 }
 
+//Sign up for our newsletter!
+async signUpNewsletter(){
+    await this.newsletter.check();
+}
 
+//Receive special offers from our partners!
+async receiveOffers(){
+    await this.offers.check();
+}
 
+/*
+ADDRESS INFORMATION
+*/
+async inputAddressInformation(
+    firstName:string, 
+    lastName:string, 
+    company:string, 
+    address:string, 
+    addressTwo:string, 
+    country:string,
+    state:string,
+    city:string,
+    zipcode:string,
+    mobileNumber:string){
+
+    await this.firstName.fill(firstName);
+    await this.lastName.fill(lastName);
+    await this.company.fill(company);
+    await this.addressOne.fill(address);
+    await this.addressTwo.fill(addressTwo);
+    await this.country.selectOption(country);
+    await this.state.fill(state);
+    await this.city.fill(city);
+    await this.zipCode.fill(zipcode);
+    await this.mobileNumber.fill(mobileNumber);
+}
+
+async createAccount(page:Page){
+    await this.createAccountBtn.click();
+    await expect (page).toHaveURL("https://www.automationexercise.com/account_created");
+    const account = page.locator("//*[contains(text(),'Account Created!')]")
+    await expect (account).toContainText("Account Created!'");
+}
 }
