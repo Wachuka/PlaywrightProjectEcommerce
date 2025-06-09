@@ -18,7 +18,7 @@ test("add product to cart",async({page})=>{
     await page.waitForTimeout(5000);
 
     //verify product has been added to cart successfully
-    const cartMessage = page.locator('//*[@id="cartModal"]//div[@class = "modal-content"]'); 
+    const cartMessage = page.locator('//*[@id="cartModal"]//div[@class = "modal-content"]');    
     await expect (cartMessage).toBeVisible();
     await expect (cartMessage).toContainText("Your product has been added to cart.");
 })
