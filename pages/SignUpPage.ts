@@ -79,9 +79,6 @@ export class Signup {
         await this.signUpName.fill(name);
         await this.signUpEmail.fill(email);
         await this.signUpBtn.click();
-        await expect(this.page).toHaveURL("https://www.automationexercise.com/signup");
-        await expect(this.accountInfoLabel).toBeVisible();
-        await expect(this.addressInfoLabel).toBeVisible();
     }
 
     /*

@@ -39,7 +39,7 @@ const months:string[] = [ "January", "February", "March", "April", "May", "June"
 
     return {
         name: fullname,
-        email: faker.internet.email(),
+        email: faker.internet.email({ firstName: first_name, lastName: last_name }),
         title: faker.helpers.arrayElement(["Mr","Mrs"]),
         password: faker.internet.password(),
         dob: {
